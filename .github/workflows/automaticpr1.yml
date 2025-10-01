@@ -11,8 +11,8 @@ permissions:
 jobs:
   pull-request:
     runs-on: ubuntu-latest
-      steps:
-        - name: create pull request
-          run: gh pr create -B master -f
-          env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: create pull request
+        run: gh pr create -B master -f
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
