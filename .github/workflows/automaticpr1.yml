@@ -19,6 +19,6 @@ jobs:
           ref: master   
 
       - name: create pull request
-        run: gh pr create -B master -f
+        run: gh pr create -B master --fill-first
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
