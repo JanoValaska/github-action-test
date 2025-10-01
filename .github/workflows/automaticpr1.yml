@@ -11,9 +11,8 @@ permissions:
 jobs:
   pull-request:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: pull-request
-        run: |
-          gh_pr_up() { gh pr create $* || gh pr edit $* }
-          gh_pr_up --title "My pull request" --body "Description"
+      steps:
+        - name: create pull request
+          run: gh pr create -B master -f
+          env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
