@@ -1,22 +1,15 @@
 name: Auto Create Pull Request
 
 on:
-  create:
+  push:
     branches:
       - '*'
 
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: master
-          branch: ${{ github.event.ref }}
-          title: 'Auto-created Pull Request'
-          body: 'This pull request was automatically created by GitHub Actions.'
+  steps:
+    - name: create pull request
+      run: gh pr create -B base_branch -H branch_to_merge --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
